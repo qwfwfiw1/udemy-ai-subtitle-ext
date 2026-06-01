@@ -44,3 +44,12 @@ Udemy 經常使用強大的 CSS 來覆寫網頁上的元素，導致擴充功能
 3. 開啟右上角的 **「開發人員模式 (Developer mode)」**。
 4. 點擊左上角的 **「載入未封裝項目 (Load unpacked)」**，並選擇本專案的資料夾。
 5. 安裝完成！打開任何一堂 Udemy 課程，影片下方就會自動啟動雙語字幕囉！
+
+---
+
+## 👨‍💻 製作團隊 (Credits)
+
+- **主導開發與發想 (Creator & Developer)**：YuAn
+- **AI 協同開發助理 (AI Pair Programmer)**：Antigravity (Powered by Google DeepMind)
+
+*本專案由人類與 AI 結對程式設計 (Pair Programming) 共同完成，展示了新一代 AI 輔助開發的強大潛力。*
