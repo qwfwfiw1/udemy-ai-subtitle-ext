@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Udemy AI 字幕助手</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="popup-header">
+      <div class="header-logo">
+        <div class="logo-icon">🎓</div>
+        <div class="header-text">
+          <span class="app-name">Udemy AI 字幕</span>
+          <span class="app-version">v1.0.0</span>
+        </div>
+      </div>
+      <div id="status-badge" class="status-badge">就緒</div>
+    </div>
+
+    <!-- Master toggle -->
+    <div class="toggle-row master-toggle">
+      <div class="toggle-info">
+        <span class="toggle-label">啟用字幕</span>
+        <span class="toggle-desc">在 Udemy 課程頁面顯示字幕</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-enabled" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Feature Toggles -->
+    <div class="section-title">顯示設定</div>
+    <div class="toggles-grid">
+      <div class="toggle-card">
+        <div class="toggle-card-icon">📝</div>
+        <span>原文</span>
+        <label class="switch-sm">
+          <input type="checkbox" id="toggle-original" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-card">
+        <div class="toggle-card-icon">🌐</div>
+        <span>譯文</span>
+        <label class="switch-sm">
+          <input type="checkbox" id="toggle-translation" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-card">
+        <div class="toggle-card-icon">🔊</div>
+        <span>朗讀</span>
+        <label class="switch-sm">
+          <input type="checkbox" id="toggle-tts">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Target Language -->
+    <div class="section-title">翻譯語言</div>
+    <select id="lang-select" class="lang-select">
+      <option value="zh-TW">🇹🇼 繁體中文</option>
+      <option value="zh-CN">🇨🇳 简体中文</option>
+      <option value="ja">🇯🇵 日本語</option>
+      <option value="ko">🇰🇷 한국어</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="de">🇩🇪 Deutsch</option>
+      <option value="es">🇪🇸 Español</option>
+    </select>
+
+    <!-- Font Size -->
+    <div class="section-title">字幕大小</div>
+    <div class="slider-row">
+      <span class="slider-min">小</span>
+      <input type="range" id="font-size" min="13" max="28" value="18" class="range-slider">
+      <span class="slider-max">大</span>
+      <span id="font-size-value" class="slider-value">18px</span>
+    </div>
+
+    <!-- API Key status -->
+    <div id="api-status" class="api-status">
+      <div class="api-status-icon" id="api-icon">❌</div>
+      <div class="api-status-text">
+        <div id="api-label">未設定 API Key</div>
+        <div id="api-hint">請點擊下方「設定」</div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="action-buttons">
+      <button id="btn-settings" class="btn btn-secondary">⚙️ 設定</button>
+      <button id="btn-retranslate" class="btn btn-primary">🔄 重新翻譯</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

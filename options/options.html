@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Udemy AI 字幕助手 — 設定</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="page">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">🎓</div>
+        <div>
+          <div class="logo-name">Udemy AI 字幕</div>
+          <div class="logo-ver">v1.0.0</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#section-display" class="nav-item active" data-section="display">📺 顯示設定</a>
+        <a href="#section-translation" class="nav-item" data-section="translation">🌐 翻譯設定</a>
+        <a href="#section-tts" class="nav-item" data-section="tts">🔊 語音設定</a>
+        <a href="#section-cache" class="nav-item" data-section="cache">💾 快取管理</a>
+        <a href="#section-about" class="nav-item" data-section="about">ℹ️ 關於</a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+      <div id="save-banner" class="save-banner hidden">✅ 設定已儲存</div>
+
+      <!-- 顯示設定 -->
+      <section id="section-display" class="settings-section">
+        <h2 class="section-heading">📺 顯示設定</h2>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">字幕大小</div>
+            <div class="setting-desc">調整字幕文字的顯示大小</div>
+          </div>
+          <div class="setting-control">
+            <input type="range" id="font-size" min="13" max="30" value="18" class="range-slider">
+            <span id="font-size-val" class="range-value">18px</span>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">顯示原文</div>
+            <div class="setting-desc">在字幕中顯示課程原始語言</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="show-original" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">顯示翻譯</div>
+            <div class="setting-desc">在字幕中顯示 AI 翻譯結果</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="show-translation" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- 翻譯設定 -->
+      <section id="section-translation" class="settings-section hidden">
+        <h2 class="section-heading">🌐 翻譯設定</h2>
+
+        <div class="form-group">
+          <label class="form-label">目標翻譯語言</label>
+          <select id="target-lang" class="form-select">
+            <option value="zh-TW">🇹🇼 繁體中文</option>
+            <option value="zh-CN">🇨🇳 简体中文</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="ru">🇷🇺 Русский</option>
+          </select>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">翻譯批次大小</div>
+            <div class="setting-desc">每次 API 呼叫翻譯的字幕行數（越大越省費用）</div>
+          </div>
+          <div class="setting-control">
+            <input type="range" id="batch-size" min="20" max="100" step="10" value="60" class="range-slider">
+            <span id="batch-size-val" class="range-value">60 行</span>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">啟用翻譯快取</div>
+            <div class="setting-desc">相同課程再次觀看時不重複翻譯（節省費用）</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="enable-cache" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- TTS 設定 -->
+      <section id="section-tts" class="settings-section hidden">
+        <h2 class="section-heading">🔊 語音朗讀設定</h2>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">啟用語音朗讀</div>
+            <div class="setting-desc">自動朗讀翻譯後的字幕</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="tts-enabled">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">朗讀速度</label>
+          <div class="setting-control">
+            <input type="range" id="tts-rate" min="0.5" max="1.5" step="0.1" value="0.9" class="range-slider">
+            <span id="tts-rate-val" class="range-value">0.9x</span>
+          </div>
+        </div>
+
+        <button id="btn-test-tts" class="btn btn-secondary">▶️ 測試語音</button>
+      </section>
+
+      <!-- 快取管理 -->
+      <section id="section-cache" class="settings-section hidden">
+        <h2 class="section-heading">💾 快取管理</h2>
+        <p class="section-desc">翻譯結果會快取至本地以節省 API 費用。</p>
+
+        <div id="cache-info" class="cache-info">
+          <div class="cache-stat">
+            <span class="cache-stat-label">快取筆數</span>
+            <span id="cache-count" class="cache-stat-value">計算中…</span>
+          </div>
+          <div class="cache-stat">
+            <span class="cache-stat-label">估計大小</span>
+            <span id="cache-size" class="cache-stat-value">計算中…</span>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button id="btn-refresh-cache" class="btn btn-secondary">🔄 重新整理</button>
+          <button id="btn-clear-cache" class="btn btn-danger">🗑️ 清除快取</button>
+        </div>
+      </section>
+
+      <!-- 關於 -->
+      <section id="section-about" class="settings-section hidden">
+        <h2 class="section-heading">ℹ️ 關於</h2>
+        <div class="about-card">
+          <div class="about-logo">🎓</div>
+          <h3>Udemy AI 字幕助手</h3>
+          <p>版本 1.0.0</p>
+          <p class="about-desc">
+            使用 OpenAI GPT-4o 為 Udemy 課程提供高品質 AI 翻譯字幕，
+            支援雙語顯示、TTS 語音朗讀及 AI 課程摘要功能。
+          </p>
+          <div class="about-features">
+            <span class="feature-tag">✅ 免費 Google 翻譯</span>
+            <span class="feature-tag">✅ VTT 字幕攔截</span>
+            <span class="feature-tag">✅ 雙語顯示</span>
+            <span class="feature-tag">✅ TTS 朗讀</span>
+            <span class="feature-tag">✅ SRT 匯出</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Save button (global) -->
+      <div class="global-save">
+        <button id="btn-save-all" class="btn btn-primary btn-lg">💾 儲存所有設定</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+/* content.css — Udemy AI 字幕助手 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* ── 根容器：固定在視窗底部，確保一定可見 ── */
+#uds-root {
+  all: initial; /* 重置所有繼承樣式，避免 Udemy CSS 干擾 */
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 2147483647 !important;
+  font-family: 'Inter', 'PingFang TC', 'Microsoft JhengHei', sans-serif !important;
+  pointer-events: none !important;
+  box-sizing: border-box !important;
+}
+
+/* 成功附加到播放器後切換為 absolute */
+#uds-root[style*="absolute"] {
+  position: absolute !important;
+  z-index: 99999 !important;
+}
+
+/* ── 字幕顯示條 ── */
+#uds-bar {
+  position: absolute !important;
+  bottom: 52px !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(8px) !important;
+  max-width: 88% !important;
+  min-width: 160px !important;
+  padding: 8px 18px !important;
+  background: rgba(0, 0, 0, 0.78) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 10px !important;
+  text-align: center !important;
+  opacity: 0 !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+  pointer-events: none !important;
+}
+
+#uds-bar.uds-show {
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+#uds-orig {
+  font-size: var(--uds-fs, 18px) !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.95) !important;
+  line-height: 1.5 !important;
+  display: block !important;
+}
+
+#uds-orig:empty { display: none !important; }
+
+#uds-trans {
+  font-size: calc(var(--uds-fs, 18px) * 0.95) !important;
+  font-weight: 700 !important;
+  color: #ffd76e !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.95) !important;
+  line-height: 1.5 !important;
+  margin-top: 2px !important;
+  display: block !important;
+}
+
+#uds-trans:empty { display: none !important; }
+
+/* ── 控制列 ── */
+#uds-ctrl {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 0 10px !important;
+  background: linear-gradient(to right, rgba(15,5,35,0.97), rgba(25,8,55,0.95)) !important;
+  border-top: 1px solid rgba(124,58,237,0.35) !important;
+  box-sizing: border-box !important;
+  pointer-events: all !important;
+  overflow: hidden !important;
+}
+
+#uds-logo {
+  font-size: 18px !important;
+  flex-shrink: 0 !important;
+  margin-right: 2px !important;
+}
+
+/* 按鈕 */
+.ub {
+  all: unset !important;
+  padding: 4px 9px !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  border-radius: 6px !important;
+  background: rgba(255,255,255,0.07) !important;
+  color: rgba(255,255,255,0.55) !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: all 0.15s !important;
+  font-family: inherit !important;
+  flex-shrink: 0 !important;
+}
+
+.ub:hover {
+  background: rgba(124,58,237,0.25) !important;
+  border-color: rgba(167,139,250,0.5) !important;
+  color: #fff !important;
+}
+
+.ub.active {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(124,58,237,0.4) !important;
+}
+
+#uds-st {
+  font-size: 11px !important;
+  color: rgba(167,139,250,0.8) !important;
+  margin-left: 4px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+/* ── Toast ── */
+#uds-toast {
+  position: absolute !important;
+  top: -50px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  padding: 6px 16px !important;
+  border-radius: 20px !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: opacity 0.25s, top 0.25s !important;
+  background: rgba(20,8,50,0.95) !important;
+  border: 1px solid rgba(124,58,237,0.4) !important;
+  color: #e9d5ff !important;
+}
+
+#uds-toast.uds-toast-show {
+  opacity: 1 !important;
+  top: -58px !important;
+}
+
+#uds-toast.uds-t-warning {
+  background: rgba(100,60,0,0.95) !important;
+  border-color: rgba(251,191,36,0.5) !important;
+  color: #fde68a !important;
+}
+
+#uds-toast.uds-t-error {
+  background: rgba(80,0,20,0.95) !important;
+  border-color: rgba(239,68,68,0.5) !important;
+  color: #fca5a5 !important;
+}
+
+/* ── AI 摘要面板 ── */
+#uds-summary {
+  position: fixed !important;
+  top: 50% !important;
+  right: 20px !important;
+  transform: translateY(-50%) !important;
+  width: 370px !important;
+  max-height: 72vh !important;
+  background: rgba(12,4,30,0.97) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(124,58,237,0.35) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  z-index: 2147483647 !important;
+  pointer-events: all !important;
+}
+
+#uds-summary.uds-hide { display: none !important; }
+
+#uds-sum-hd {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 12px 16px !important;
+  background: rgba(124,58,237,0.2) !important;
+  border-bottom: 1px solid rgba(124,58,237,0.2) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #e9d5ff !important;
+}
+
+#uds-sum-x {
+  all: unset !important;
+  cursor: pointer !important;
+  color: rgba(255,255,255,0.5) !important;
+  font-size: 15px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+}
+
+#uds-sum-x:hover { background: rgba(255,255,255,0.1) !important; color: #fff !important; }
+
+#uds-sum-body {
+  padding: 14px 16px !important;
+  overflow-y: auto !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+  color: #d1d5db !important;
+  flex: 1 !important;
+}
+
+#uds-sum-body h3 { color: #a78bfa !important; font-size: 13.5px !important; margin: 12px 0 5px !important; }
+#uds-sum-body li { margin: 3px 0 !important; }
+#uds-sum-body strong { color: #f3e8ff !important; }
+
+.uds-spin { text-align: center !important; padding: 24px !important; color: #a78bfa !important; }

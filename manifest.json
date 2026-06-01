@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Udemy AI 字幕助手",
+  "short_name": "Udemy字幕",
+  "version": "1.0.0",
+  "description": "AI 驅動的 Udemy 字幕翻譯工具。支援 GPT-4o 即時翻譯、雙語字幕顯示、TTS 語音朗讀與字幕匯出。",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "scripting",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "*://*.udemy.com/*",
+    "*://*.udemycdn.com/*",
+    "*://*.cloudfront.net/*",
+    "https://api.openai.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.udemy.com/course/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js", "utils/subtitle-parser.js"],
+      "matches": ["*://*.udemy.com/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
